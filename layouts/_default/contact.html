@@ -1,0 +1,31 @@
+{{- define "main" }}
+
+<header class="page-header">
+    <h1>{{- (printf "%s&nbsp;" .Title ) | htmlUnescape -}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+    </h1>
+    {{- if .Description }}
+    <div class="post-description">
+        {{ .Description }}
+    </div>
+    {{- end }}
+    {{- if not (.Param "hideMeta") }}
+    <div class="post-meta">
+        {{- partial "translation_list.html" . -}}
+    </div>
+    {{- end }}
+</header>
+
+<form id="formbox" netlify>
+    <input type="text" name="name" autofocus placeholder="Name">
+    <input type="text" name="email" autofocus placeholder="Email">
+    <input id="fsub" type="text" name="subject" autofocus placeholder="Subject">
+    <textarea name="message" id="fmsg" cols="30" rows="10" placeholder="Message"></textarea>
+    <button type="submit">Send</button>
+</form>
+
+{{- end }}{{/* end main */}}
